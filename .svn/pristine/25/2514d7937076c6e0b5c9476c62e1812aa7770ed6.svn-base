@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+                
+   <ui:define name="titulo">
+        Direcciones ADD
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Direcciones ADD</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form id="form">
+			    <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+			        <p:messages id="messages" />
+			        <h:panelGrid columns="3" cellpadding="5">
+			        
+			            <p:outputLabel for="calle" value="Calle:" />
+			            	<p:inputText id="calle" value="#{direccionBean.calle}" required="true">
+			            </p:inputText>
+			            <p:message for="calle" />
+			            
+			            
+			            <p:outputLabel for="cp" value="Cp:" />
+			            	<p:inputText id="cp" value="#{direccionBean.cp}" required="true">
+			            </p:inputText>
+			            <p:message for="cp" />
+			            
+			            
+			            <p:outputLabel for="numero" value="Numero:" />
+			            	<p:inputText id="numero" value="#{direccionBean.numero}" required="true">
+			            </p:inputText>
+			            <p:message for="numero" />
+			            
+			            
+			            <p:outputLabel for="poblacion" value="Poblacion:" />
+			            	<p:inputText id="poblacion" value="#{direccionBean.poblacion}" required="true">
+			            </p:inputText>
+			            <p:message for="poblacion" />
+			            
+			            
+			            <p:outputLabel for="provincia" value="Provincia:" />
+			            	<p:inputText id="provincia" value="#{direccionBean.provincia}" required="true">
+			            </p:inputText>
+			            <p:message for="provincia" />
+			 
+			        </h:panelGrid>
+			    </p:panel>
+			    
+			    
+            		<p:commandButton value="Submit" update="panel" actionListener="#{direccionBean.save}" style="margin-right:20px;" />
+        		
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+	  </h:form>	
+        
+        
+        
+    </ui:define>
+</ui:composition>                

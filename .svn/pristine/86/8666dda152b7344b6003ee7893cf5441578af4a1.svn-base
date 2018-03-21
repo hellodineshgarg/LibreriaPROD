@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+<ui:define name="titulo">
+        Admin Libreria
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Admin Libreria</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+    
+     <p:panel id="panel" header="USER DATA" style="margin-bottom:10px;">
+     	<h:panelGrid columns="2" cellpadding="5">
+	     	<p:outputLabel value="Nombre:"   />
+	      	<p:inputText value="#{UserSessionBean.user.username}" readonly="true" ></p:inputText>
+	      	
+	      	
+	      	
+	      	<p:outputLabel value="Role:"   />
+	      	<p:inputText value="#{UserSessionBean.user.role.name}  " readonly="true" ></p:inputText>
+	      
+	    </h:panelGrid>	
+	</p:panel>
+	
+        
+    </ui:define>
+    
+    
+
+
+ 
+
+</ui:composition>

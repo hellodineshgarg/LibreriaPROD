@@ -1,0 +1,44 @@
+<ui:component xmlns:ui="http://java.sun.com/jsf/facelets"
+			  xmlns:h="http://java.sun.com/jsf/html"
+			  xmlns:p="http://primefaces.org/ui"
+			  xmlns:f="http://java.sun.com/jsf/core">
+<h:form>
+	<p:menubar>
+		<p:menuitem url="/admin/index.xhtml" icon="ui-icon-home" />
+		
+		<p:submenu label="Direcciones">
+			<p:menuitem value="List" url="/admin/direcciones/index.xhtml"></p:menuitem>
+			<p:separator></p:separator>
+			<p:menuitem value="Add" url="/admin/direcciones/add.xhtml"></p:menuitem>
+		</p:submenu>
+		
+		<p:submenu label="Editoriales">
+			<p:menuitem value="List" url="/admin/editoriales/index.xhtml"></p:menuitem>
+			<p:separator></p:separator>
+			<p:menuitem value="Add" url="/admin/editoriales/add.xhtml"></p:menuitem>
+		</p:submenu>
+		
+		<p:submenu label="Autores">
+			<p:menuitem value="List" url="/admin/autores/index.xhtml"></p:menuitem>
+			<p:separator></p:separator>
+			<p:menuitem value="Add" url="/admin/autores/add.xhtml"></p:menuitem>
+		</p:submenu>
+	
+		<p:submenu label="Libros">
+			<p:menuitem value="List" url="/admin/libros/index.xhtml"></p:menuitem>
+			<p:separator></p:separator>
+			<p:menuitem value="Add" url="/admin/libros/add.xhtml"></p:menuitem>
+		</p:submenu>
+		
+		
+		<p:submenu label="Usuarios">
+			<p:menuitem value="List" url="/admin/users/index.xhtml"></p:menuitem>
+			<p:separator></p:separator>
+			<p:menuitem value="Add" url="/admin/users/add.xhtml"></p:menuitem>
+		</p:submenu>
+		
+		<p:menuitem url="/logout" value="LogOut" icon="ui-icon-close" />
+		
+	</p:menubar>
+</h:form>
+</ui:component>

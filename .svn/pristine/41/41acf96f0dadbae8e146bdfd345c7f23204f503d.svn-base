@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+<ui:define name="titulo">
+        Libros
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Libros</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+    
+    
+    
+    <h:form id="libroTablaForm">   
+    <p:messages id="messages" />
+		<p:dataTable id="libroTabla" var="libro" value="#{dataTableLibroBean.lazyModel}" 
+				 paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="5,10,15" selectionMode="single"  lazy="true" >
+                 
+                 
+                 
+                 
+            <p:column headerText="Id" sortBy="#{libro.id}" >
+		         <h:outputText value="#{libro.id}" />
+		    </p:column>
+		    
+		    
+		    <p:column headerText="isbn" sortBy="#{libro.isbn}" filterBy="#{libro.isbn}">
+		        <h:outputText value="#{libro.isbn}" />
+		    </p:column>
+		    
+		    <p:column headerText="titulo" sortBy="#{libro.titulo}" filterBy="#{libro.titulo}">
+		        <h:outputText value="#{libro.titulo}" />
+		    </p:column>
+		    
+		    
+		    <p:column headerText="publicacion" sortBy="#{libro.publicacion}">
+		        <h:outputText value="#{libro.publicacion}" />
+		    </p:column>
+		    
+		    <p:column headerText="descripcion" sortBy="#{libro.descripcion}" filterBy="#{libro.descripcion}">
+		        <h:outputText value="#{libro.descripcion}" />
+		    </p:column>
+		    
+		 
+		    
+		    <p:column>
+		    
+			    <p:link outcome="edit" value="edit">
+	    			<f:param name="id" value="#{libro.id}" />
+				</p:link>
+			    
+		    </p:column>
+		    
+		    
+		    <p:column>
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Delete this Editorial"
+                        actionListener="#{dataTableLibroBean.delete(libro)}"
+                        update="libroTablaForm"
+                        ajax="true" />
+             </p:column>
+		    
+		    
+		</p:dataTable>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>	
+		
+	</h:form>	
+	
+	
+	
+	
+	
+        
+    </ui:define>
+    
+
+
+ 
+
+</ui:composition>

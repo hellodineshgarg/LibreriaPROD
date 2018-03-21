@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+<ui:define name="titulo">
+        Users
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Users</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+    
+    
+    
+    <h:form id="userTablaForm">   
+    <p:messages id="messages" />
+		<p:dataTable id="userTabla" var="user" value="#{dataTableUserBean.lazyModel}" 
+				 paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="5,10,15" selectionMode="single"  lazy="true" >
+                 
+                 
+            <p:column headerText="Id" sortBy="#{user.id}">
+		         <h:outputText value="#{user.id}" />
+		    </p:column>
+		    
+		    
+		    <p:column headerText="username" sortBy="#{user.username}" filterBy="#{user.username}">
+		        <h:outputText value="#{user.username}" />
+		    </p:column>
+		    
+		    
+<!-- 		    <p:column headerText="password" sortBy="#{user.password}" filterBy="#{user.password}"> -->
+<!-- 		        <h:outputText value="#{user.password}" /> -->
+<!-- 		    </p:column> -->
+		    
+		    
+		     <p:column headerText="enabled" sortBy="#{user.enabled}">
+		        <h:outputText value="#{user.enabled}" />
+		    </p:column>
+		    
+		  	<p:column>
+		    
+			    <p:link outcome="edit" value="edit">
+	    			<f:param name="id" value="#{user.id}" />
+				</p:link>
+			    
+		    </p:column>
+		    
+		    
+		    <p:column>
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Delete this Editorial"
+                        actionListener="#{dataTableUserBean.delete(user)}"
+                        update="userTablaForm"
+                        ajax="true" />
+             </p:column>
+		    
+		    
+		</p:dataTable>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>	
+		
+	</h:form>	
+	
+	
+	
+
+	
+        
+    </ui:define>
+    
+
+
+ 
+
+</ui:composition>

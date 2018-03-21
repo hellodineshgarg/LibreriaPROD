@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/userLayout.xhtml">
+                
+   <ui:define name="titulo">
+        Libro View
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Libro View</h1>
+        <h2><p:link outcome="index" value="Index"></p:link></h2>
+    </ui:define>
+
+    <ui:define name="contenido">
+        
+			    <p:panel id="panel" header="Libro View" style="margin-bottom:10px;">
+			        <h:panelGrid columns="3" cellpadding="5">
+			        
+			        	 <p:inputText id="id" value="#{libroBean.id}" type="hidden" />
+			        	 
+			          
+			            <p:outputLabel for="isbn" value="Isbn:"   />
+			            	<p:inputText id="isbn" value="#{libroBean.isbn}" readonly="true">
+			            </p:inputText>
+			            <p:message for="isbn" />
+			            
+			            
+			            <p:outputLabel for="titulo" value="Titulo:" />
+			            	<p:inputText id="titulo" value="#{libroBean.titulo}" readonly="true">
+			            </p:inputText>
+			            <p:message for="titulo" />
+			            
+			            
+			            <p:outputLabel for="publicacion" value="Publicacion:" />
+			            	<p:inputText id="publicacion" value="#{libroBean.publicacion}" readonly="true">
+			            </p:inputText>
+			            <p:message for="publicacion" />
+			            
+			            
+			            <p:outputLabel for="precio" value="Precio:" />
+			            	<p:inputText id="precio" value="#{libroBean.precio}" readonly="true">
+			            </p:inputText>
+			            <p:message for="precio" />
+			            
+			            
+			            <p:outputLabel for="descripcion" value="Descripcion:" />
+			            	<p:inputText id="descripcion" value="#{libroBean.descripcion}" readonly="true">
+			            </p:inputText>
+			            <p:message for="descripcion" />
+			            
+			            
+			            <p:outputLabel for="editorial" value="Editorial:" />
+			            	<p:inputText id="editorial" value="#{libroBean.editorial.nombre}" readonly="true">
+			            </p:inputText>
+			            <p:message for="editorial" />
+			            
+			 		</h:panelGrid>
+			    </p:panel>
+			    
+			    
+            		  
+	  	<p:panel id="panel2" header="Autores" style="margin-bottom:10px;">   
+	 		 <p:dataTable var="autor" value="#{libroBean.autores}" id="LibroAutoresDataTable">
+		  		
+						    <p:column headerText="Id">
+						        <h:outputText value="#{autor.id}" />
+						    </p:column>
+						 
+						    <p:column headerText="Titulo">
+						        <h:outputText value="#{autor.nombre}" />
+						    </p:column>
+			 </p:dataTable>
+		 	</p:panel> 	
+	</ui:define>
+</ui:composition>                

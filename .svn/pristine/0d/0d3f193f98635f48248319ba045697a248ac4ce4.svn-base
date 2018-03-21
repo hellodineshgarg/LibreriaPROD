@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+<ui:define name="titulo">
+        Direcciones
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Direcciones</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+    
+    
+    
+    <h:form id="direccionTablaForm">   
+    <p:messages id="messages" />
+		<p:dataTable id="direccionTabla" var="direccion" value="#{dataTableDireccionBean.lazyModel}" 
+				 paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="5,10,15" selectionMode="single"  lazy="true" >
+                 
+                 
+            <p:column headerText="Id" sortBy="#{direccion.id}">
+		         <h:outputText value="#{direccion.id}" />
+		    </p:column>
+		    
+		    
+		    <p:column headerText="calle" sortBy="#{direccion.calle}" filterBy="#{direccion.calle}">
+		        <h:outputText value="#{direccion.calle}" />
+		    </p:column>
+		    
+		    <p:column headerText="cp" sortBy="#{direccion.cp}">
+		        <h:outputText value="#{direccion.cp}" />
+		    </p:column>
+		    
+		    
+		    <p:column headerText="numero" sortBy="#{direccion.numero}">
+		        <h:outputText value="#{direccion.numero}" />
+		    </p:column>
+		    
+		    <p:column headerText="provincia" sortBy="#{direccion.provincia}" filterBy="#{direccion.provincia}">
+		        <h:outputText value="#{direccion.provincia}" />
+		    </p:column>
+		    
+		 
+		    <p:column headerText="poblacion" sortBy="#{direccion.poblacion}" filterBy="#{direccion.poblacion}">
+		        <h:outputText value="#{direccion.poblacion}" />
+		    </p:column>
+		    
+		    
+		    <p:column>
+		    
+			    <p:link outcome="edit" value="edit">
+	    			<f:param name="id" value="#{direccion.id}" />
+				</p:link>
+			    
+		    </p:column>
+		    
+		    
+		    <p:column>
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Delete this Editorial"
+                        actionListener="#{dataTableDireccionBean.delete(direccion)}"
+                        update="direccionTablaForm"
+                        ajax="true" />
+             </p:column>
+		    
+		    
+		</p:dataTable>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>	
+		
+	</h:form>	
+	
+	
+	
+
+	
+        
+    </ui:define>
+    
+
+
+ 
+
+</ui:composition>

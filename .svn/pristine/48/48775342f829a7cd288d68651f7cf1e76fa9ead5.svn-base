@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+                
+   <ui:define name="titulo">
+        Libros EDIT
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Libros EDIT</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form id="form">
+			    <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+			        <p:messages id="messages" />
+			        <h:panelGrid columns="3" cellpadding="5">
+			        
+			        	 <p:inputText id="id" value="#{libroBean.id}" type="hidden" />
+			        	 
+			          
+			            <p:outputLabel for="isbn" value="Isbn:" />
+			            	<p:inputText id="isbn" value="#{libroBean.isbn}" required="true">
+			            </p:inputText>
+			            <p:message for="isbn" />
+			            
+			            
+			            <p:outputLabel for="titulo" value="Titulo:" />
+			            	<p:inputText id="titulo" value="#{libroBean.titulo}" required="true">
+			            </p:inputText>
+			            <p:message for="titulo" />
+			            
+			            
+			            <p:outputLabel for="publicacion" value="Publcacion:" />
+			            	<p:inputText id="publicacion" value="#{libroBean.publicacion}" required="true">
+			            </p:inputText>
+			            <p:message for="publicacion" />
+			            
+			            
+			            <p:outputLabel for="precio" value="Precio:" />
+			            	<p:inputText id="precio" value="#{libroBean.precio}" required="true">
+			            </p:inputText>
+			            <p:message for="precio" />
+			            
+			            
+			            <p:outputLabel for="descripcion" value="Descricpcion:" />
+			            	<p:inputText id="descripcion" value="#{libroBean.descripcion}" required="true">
+			            </p:inputText>
+			            <p:message for="descripcion" />
+			            
+			            
+			            
+			            <p:outputLabel for="editorial_id" value="Editorial: " />
+				        <p:selectOneMenu id="editorial_id" value="#{libroBean.editorial_id}">
+				            <f:selectItem itemLabel="Select One" itemValue="" />
+				            <f:selectItems value="#{libroBean.editoriales}" />
+				        </p:selectOneMenu>
+			 
+			        </h:panelGrid>
+			    </p:panel>
+			    
+			    
+            		<p:commandButton value="Submit" update="panel" actionListener="#{libroBean.edit}" style="margin-right:20px;" />
+        		
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+	  </h:form>	
+	  
+	  
+	   <h:form id="LibroAutoresDataTableForm">
+	     
+	      <p:panel id="LibroAutoresDataTableFormPanel" header="Add Autores" style="margin-bottom:10px;">
+	      		<h:panelGrid columns="3" cellpadding="5">
+	      	
+			            <p:outputLabel for="selectedAutor" value="Autores: " />
+				        <p:selectOneMenu id="selectedAutor" value="#{libroBean.selectedAutor}">
+				            <f:selectItem itemLabel="Select One" itemValue="" />
+				            <f:selectItems value="#{libroBean.allAutores}" />
+				        </p:selectOneMenu>
+				        
+				        
+				        <p:commandButton value="Add Autor"
+                        title="Add Autor"
+                        actionListener="#{libroBean.addAutor}"
+                        update="LibroAutoresDataTableForm"
+                        ajax="true" />
+              </h:panelGrid>
+           </p:panel>          
+         	<p:messages id="messages" />      
+         	         
+	 		 <p:dataTable var="autor" value="#{libroBean.autores}" id="LibroAutoresDataTable">
+		  		
+						    <p:column headerText="Id">
+						        <h:outputText value="#{autor.id}" />
+						    </p:column>
+						 
+						    <p:column headerText="Nombre">
+						        <h:outputText value="#{autor.nombre}" />
+						    </p:column>
+						    
+						    
+						    <p:column>
+		    
+							    <p:link outcome="/admin/autores/edit.xhtml" value="edit">
+					    			<f:param name="id" value="#{autor.id}" />
+								</p:link>
+							    
+						    </p:column>
+						 
+						    <p:column>
+				                    <p:commandButton icon="ui-icon-trash"
+				                        title="Delete this Autor"
+				                        actionListener="#{libroBean.deleteAutor(autor)}"
+				                        update="LibroAutoresDataTableForm"
+				                        ajax="true" />
+				             </p:column>
+						    
+			    
+		 		</p:dataTable>
+		 		
+		 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 	
+	
+	  </h:form>
+        
+        
+        
+    </ui:define>
+</ui:composition>                

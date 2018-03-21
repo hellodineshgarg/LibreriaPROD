@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+                
+   <ui:define name="titulo">
+        Editoriales ADD
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Editoriales ADD</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form id="form">
+			    <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+			        <p:messages id="messages" />
+			        <h:panelGrid columns="3" cellpadding="5">
+			        
+			            <p:outputLabel for="nombre" value="Nombre:" />
+			            	<p:inputText id="nombre" value="#{editorialBean.nombre}" required="true">
+			            </p:inputText>
+			            <p:message for="nombre" />
+			            
+			            
+			            <p:outputLabel for="nif" value="Nif:" />
+			            	<p:inputText id="nif" value="#{editorialBean.nif}" required="true">
+			            </p:inputText>
+			            <p:message for="nif" />
+			            
+			            
+			             <p:outputLabel for="direccion_id" value="Direccion: " />
+				        <p:selectOneMenu id="direccion_id" value="#{editorialBean.direccion_id}">
+				            <f:selectItem itemLabel="Select One" itemValue="" />
+				            <f:selectItems value="#{editorialBean.direcciones}" />
+				        </p:selectOneMenu>
+			            
+			            
+			            
+			        </h:panelGrid>
+			    </p:panel>
+			    
+			    
+            		<p:commandButton value="Submit" update="panel" actionListener="#{editorialBean.save}" style="margin-right:20px;" />
+        		
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+	  </h:form>	
+        
+        
+        
+    </ui:define>
+</ui:composition>                

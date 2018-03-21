@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+<ui:define name="titulo">
+        Editoriales
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Editoriales</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+    
+    
+    <h:form id="editorialTablaForm">
+    
+    <p:messages id="messages" />
+    	   
+		<p:dataTable id="editorialTabla" var="editorial" value="#{dataTableEditorialBean.lazyModel}" 
+				 paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="5,10,15" selectionMode="single"  lazy="true" >
+                 
+                 
+            <p:column headerText="Id" sortBy="#{editorial.id}">
+		         <h:outputText value="#{editorial.id}" />
+		    </p:column>
+		    
+		    
+		    <p:column headerText="nif" sortBy="#{editorial.nif}" filterBy="#{editorial.nif}">
+		        <h:outputText value="#{editorial.nif}" />
+		    </p:column>
+		    
+		    <p:column headerText="nombre" sortBy="#{editorial.nombre}" filterBy="#{editorial.nombre}">
+		        <h:outputText value="#{editorial.nombre}" />
+		    </p:column>
+		    
+		    <p:column headerText="editorial calle" sortBy="#{editorial.direccion.calle}">
+		        <h:outputText value="#{editorial.direccion.calle}" />
+		    </p:column>
+		    
+		    
+		   <p:column>
+		    
+			    <p:link outcome="edit" value="edit">
+	    			<f:param name="id" value="#{editorial.id}" />
+				</p:link>
+			    
+		    </p:column>
+		    
+		    
+		    <p:column>
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Delete this Editorial"
+                        actionListener="#{dataTableEditorialBean.delete(editorial)}"
+                        update="editorialTablaForm"
+                        ajax="true" />
+             </p:column>
+		    
+		    
+		    
+		    
+		</p:dataTable>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>	
+		
+	</h:form>	
+	
+	
+	
+	
+	
+        
+    </ui:define>
+    
+ 
+
+</ui:composition>
