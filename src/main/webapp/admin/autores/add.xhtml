@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+                
+   <ui:define name="titulo">
+        Autor ADD
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Autor ADD</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form id="AutorAddform">
+			    <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+			        <p:messages id="messages" />
+			        <h:panelGrid columns="3" cellpadding="5">
+			        
+			            <p:outputLabel for="nombre" value="Nombre:" />
+			            	<p:inputText id="nombre" value="#{autorBean.nombre}" required="true">
+			            </p:inputText>
+			            <p:message for="nombre" />
+			            
+			            
+			            <p:outputLabel for="nacionalidad" value="Nacionalidad:" />
+			            	<p:inputText id="nacionalidad" value="#{autorBean.nacionalidad}" required="true">
+			            </p:inputText>
+			            <p:message for="nacionalidad" />
+			            
+			            
+			            <p:outputLabel for="comentarios" value="Comentarios:" />
+			            	<p:inputText id="comentarios" value="#{autorBean.comentarios}" required="true">
+			            </p:inputText>
+			            <p:message for="comentarios" />
+			            
+			 		</h:panelGrid>
+			    </p:panel>
+			    
+			    
+			    
+            		<p:commandButton value="Submit" update="panel" actionListener="#{autorBean.save}" style="margin-right:20px;" />
+        		
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+	  </h:form>	
+        
+        
+        
+    </ui:define>
+</ui:composition>                

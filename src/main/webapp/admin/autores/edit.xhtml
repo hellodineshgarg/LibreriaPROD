@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"	
+                template="/WEB-INF/templates/adminLayout.xhtml">
+                
+                
+                
+   <ui:define name="titulo">
+        Autores EDIT
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <h1>Autores EDIT</h1>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form id="AutorEditform">
+        		<p:messages id="messages" />
+			    <p:panel id="panel" header="Autor Edit" style="margin-bottom:10px;">
+			        
+			        <h:panelGrid columns="3" cellpadding="5">
+			        	 <p:inputText id="id" value="#{autorBean.id}" type="hidden" />
+			        	 
+			            <p:outputLabel for="nombre" value="Nombre:" />
+			            	<p:inputText id="nombre" value="#{autorBean.nombre}" required="true">
+			            </p:inputText>
+			            <p:message for="nombre" />
+			            
+			            
+			            <p:outputLabel for="nacionalidad" value="Nacionalidad:" />
+			            	<p:inputText id="nacionalidad" value="#{autorBean.nacionalidad}" required="true">
+			            </p:inputText>
+			            <p:message for="nacionalidad" />
+			            
+			            
+			            <p:outputLabel for="comentarios" value="Comentarios:" />
+			            	<p:inputText id="comentarios" value="#{autorBean.comentarios}" required="true">
+			            </p:inputText>
+			            <p:message for="comentarios" />
+			            
+			        <p:commandButton value="Submit" update="AutorEditform" actionListener="#{autorBean.edit}" style="margin-right:20px;" />
+        		
+      			  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+						</h:panelGrid>
+			    </p:panel>
+		</h:form>
+        
+        
+	        
+		 	
+	  <h:form id="AutorLibrosDataTableForm">
+	     
+	      <p:panel id="AutorLibrosDataTableFormPanel" header="Add Libro" style="margin-bottom:10px;">
+	      		<h:panelGrid columns="3" cellpadding="5">
+	      	
+			            <p:outputLabel for="selectedLibro" value="Libros: " />
+				        <p:selectOneMenu id="selectedLibro" value="#{autorBean.selectedLibro}">
+				            <f:selectItem itemLabel="Select One" itemValue="" />
+				            <f:selectItems value="#{autorBean.allLibros}" />
+				        </p:selectOneMenu>
+				        
+				        
+				        <p:commandButton value="Add Libro"
+                        title="Add Libro"
+                        actionListener="#{autorBean.addLibro}"
+                        update="AutorLibrosDataTableForm"
+                        ajax="true" />
+              </h:panelGrid>
+           </p:panel>          
+         	<p:messages id="messages" />      
+         	         
+	 		 <p:dataTable var="libro" value="#{autorBean.libros}" id="AutorLibrosDataTable">
+		  		
+						    <p:column headerText="Id">
+						        <h:outputText value="#{libro.id}" />
+						    </p:column>
+						 
+						    <p:column headerText="Titulo">
+						        <h:outputText value="#{libro.titulo}" />
+						    </p:column>
+						 
+						    <p:column headerText="Descripcion">
+						        <h:outputText value="#{libro.descripcion}" />
+						    </p:column>
+						    
+						    <p:column>
+		    
+							    <p:link outcome="/admin/libros/edit.xhtml" value="edit">
+					    			<f:param name="id" value="#{libro.id}" />
+								</p:link>
+							    
+						    </p:column>
+						    
+							<p:column>
+				                    <p:commandButton icon="ui-icon-trash"
+				                        title="Delete this Editorial"
+				                        actionListener="#{autorBean.deleteLibro(libro)}"
+				                        update="AutorLibrosDataTableForm"
+				                        ajax="true" />
+				             </p:column>
+						    
+			    
+		 		</p:dataTable>
+		 		
+		 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 	
+	
+	  </h:form>
+	
+	  
+        
+        
+        
+    </ui:define>
+</ui:composition>                
