@@ -24,7 +24,7 @@ Modificar el dataSource
 	
 Inicia el proyecto. http://localhost:8080/LibreriaPROD
 
-Nos logeamos como administrador en localhost:8080/LibreriaPROD/admin
+Nos logeamos como administrador en http://localhost:8080/LibreriaPROD/admin
 
 User: user
 Password: password
